@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from .forms import SignUpForm
+
 
 # Login Function
 def home(request):
@@ -25,3 +27,21 @@ def logout_user(request):
     messages.success(request, 'You have been logout successfuly.')
     return redirect('home')
 
+# Register Function
+def Register_user(request):
+    form = SignUpForm()
+    if request.method == 'POST':
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'You have been register successfuly.')
+            return redirect('home')
+        elif password1 != password2:
+            messages.success(request, 'Your password and confirm password are not same!!!')
+            return redirect('Register')
+    else:
+        form = SignUpForm()
+        return render(request, 'Register.html', {'form':form})
+    return render(request, 'Register.html')
