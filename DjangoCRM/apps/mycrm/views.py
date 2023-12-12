@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-
+# Login Function
 def home(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -17,3 +17,11 @@ def home(request):
             return redirect('home')
     else:
         return render(request, 'home.html')
+
+# Logout Function
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, 'You have been logout successfuly.')
+    return redirect('home')
+
