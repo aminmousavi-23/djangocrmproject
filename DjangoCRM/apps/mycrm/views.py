@@ -14,7 +14,7 @@ def home(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, 'You have login successfully.')
+            messages.success(request, 'You have logined successfully.')
             return redirect('home')
         else:
             messages.success(request, 'There is no account with that username!!!')
@@ -28,19 +28,19 @@ def home(request):
 
 def logout_user(request):
     logout(request)
-    messages.success(request, 'You have been logout successfully.')
+    messages.success(request, 'You have been logged out successfully.')
     return redirect('home')
 
 # Register Function
 def Register_user(request):
     form = SignUpForm()
     if request.method == 'POST':
+        form = SignUpForm(request.POST)
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'You have been register successfully.')
+            messages.success(request, 'You have been registered successfully.')
             return redirect('home')
         elif password1 != password2:
             messages.success(request, 'Your password and confirm password are not same!!!')
