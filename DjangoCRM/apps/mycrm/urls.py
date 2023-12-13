@@ -8,4 +8,5 @@ urlpatterns = [
     path('Register/', views.Register_user, name='Register'),
     path('record/<int:pk>', views.customer_record, name='record'),
     path('delete_record/<int:pk>', views.delete_record, name='delete'),
+    path('add_record/', views.add_record, name='add_record'),
 ]
