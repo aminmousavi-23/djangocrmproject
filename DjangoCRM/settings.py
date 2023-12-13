@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'DjangoCRM.apps.mycrm'
+    'DjangoCRM.apps.mycrm',
+    'import_export'
 ]
 
 MIDDLEWARE = [
