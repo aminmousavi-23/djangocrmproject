@@ -28,7 +28,7 @@ def home(request):
 
 def logout_user(request):
     logout(request)
-    messages.success(request, 'You have been logout successfuly.')
+    messages.success(request, 'You have been logout successfully.')
     return redirect('home')
 
 # Register Function
@@ -40,7 +40,7 @@ def Register_user(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'You have been register successfuly.')
+            messages.success(request, 'You have been register successfully.')
             return redirect('home')
         elif password1 != password2:
             messages.success(request, 'Your password and confirm password are not same!!!')
@@ -58,3 +58,10 @@ def customer_record(request, pk):
     else:
         messages.success(request, 'You have to login to see the data!!!')
         return redirect('home')
+    
+# Delete Function
+def delete_record(request, pk):
+    delete_record = Record.objects.get(id=pk)
+    delete_record.delete()
+    messages.success(request, 'Record deleted successfully. ')
+    return redirect('home')
