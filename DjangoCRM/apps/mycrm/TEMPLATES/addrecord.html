@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-
-    <div class="col-4 offset-4">
-        <form action="" method="post">
-            {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="btn btn-success">Add Record</button>
-        </form>
-    </div>
+<br>
+<div class="col-4 offset-4">
+    <form action="" method="post">
+        {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-success">Add Record</button>
+    </form>
+</div>
 
 {% endblock content %}
