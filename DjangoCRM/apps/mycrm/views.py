@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from .forms import SignUpForm, AddRecord
 from .models import Record
@@ -98,3 +99,16 @@ def update_record(request, pk):
     else:
         messages.success(request, 'You have to login to update record!!!')
         return redirect('home')
+
+#Change_Password
+def Change_Password(request):
+    if request.method=='POST':
+     fm=PasswordChangeForm(user=request.user,data=request.POST)  
+     if fm.is_valid():
+          fm.save()
+          update_session_auth_hash(request,fm.user)
+          messages.success(request,'Your password has be changed succesfully.....') 
+          return redirect('home')  
+    else:
+       fm=PasswordChangeForm(user=request.user)
+    return render (request,'Change_Password.html',{'fm':fm})
