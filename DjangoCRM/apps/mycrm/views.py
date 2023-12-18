@@ -75,7 +75,7 @@ def add_record(request):
     form = AddRecord()
     if request.user.is_authenticated:
         if request.method == 'POST':
-            form = AddRecord(request.POST)
+            form = AddRecord(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Record Added successfully.')
@@ -89,7 +89,7 @@ def add_record(request):
 def update_record(request, pk):
     if request.user.is_authenticated:
         current_record = Record.objects.get(id=pk)
-        form = AddRecord(request.POST or None, instance=current_record)
+        form = AddRecord(request.POST or None, request.FILES or None,instance=current_record)
         if form.is_valid():
             form.save()
             messages.success(request, 'Record Updated successfully.')

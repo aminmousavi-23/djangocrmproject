@@ -9,4 +9,4 @@ class Record(models.Model):
     phone = models.CharField(max_length=70)
     city = models.CharField(max_length=70)
     state = models.CharField(max_length=70)
-
+    profile_image = models.ImageField(null=True, blank=True, upload_to='images/')

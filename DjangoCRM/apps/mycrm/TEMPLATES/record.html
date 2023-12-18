@@ -12,6 +12,9 @@
             <strong>Phone:</strong> {{customer_record.phone}} <br>
             <strong>City:</strong> {{customer_record.city}} <br>
             <strong>State:</strong> {{customer_record.state}} <br>
+            {% if customer_record.profile_image %}
+            <strong>Profile Image:</strong><img src="{{customer_record.profile_image.url}}" alt="image_lost", width="40"> <br>
+            {% endif %}
           </p>
         </div>
     </div>
